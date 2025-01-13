@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -42,6 +43,13 @@ class UserController extends Controller
         return response()->json([
             'name' => $user->name,
             'email' => $user->email,
+        ]);
+    }
+
+    public function userRefresh()
+    {
+        return response()->json([
+            'user' => Auth::user()
         ]);
     }
 }

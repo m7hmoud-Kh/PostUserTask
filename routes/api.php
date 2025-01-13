@@ -16,10 +16,17 @@ Route::controller(PostController::class)
 ->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('/','store');
-        Route::put('/{id}','update');
+        Route::post('/{id}','update');
         Route::delete('/{id}','destroy');
     });
+    Route::get('/trending', 'showLatestPosts');
     Route::get('/','index');
     Route::get('/{id}','show');
+
 });
 
+Route::controller(UserController::class)
+->middleware('auth:sanctum')
+->group(function(){
+    Route::get('/current-user', 'userRefresh');
+});

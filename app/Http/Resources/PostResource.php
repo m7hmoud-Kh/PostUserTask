@@ -18,7 +18,10 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-            'author' => new UserResource($this->user)
+            'image' => config('app.url') . '/assets/Posts/'.$this->image,
+            'author' => new UserResource($this->user),
+            'created_at' => date_format($this->created_at,'Y-m-d H:i'),
+
         ];
     }
 }
